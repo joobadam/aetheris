@@ -3,8 +3,9 @@ import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { AuthProvider } from "./context/AuthContext";
+import {ClerkProvider,} from "@clerk/nextjs";
 import "./globals.css";
+import { MobileNavbar } from "@/components/MobileNavBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,21 +20,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-        >
-          <Navbar/>
-          <AuthProvider>
-        {children}
-        </AuthProvider>
-        <Footer/>
-        </ThemeProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            <MobileNavbar/>
+            {children}
+            <Footer />
+          </ThemeProvider>
         </body>
-    </html>
+      </html>
+    </ClerkProvider>
   );
 }

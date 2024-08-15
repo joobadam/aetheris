@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,9 +12,16 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import ThemeSwitchButton from "./ThemeSwitchButton"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/navigation-menu";
+import ThemeSwitchButton from "./ThemeSwitchButton";
+import { Button } from "@/components/ui/button";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignOutButton,
+} from "@clerk/nextjs";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -52,7 +59,7 @@ const components: { title: string; href: string; description: string }[] = [
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
   },
-]
+];
 
 export function Navbar() {
   return (
@@ -69,7 +76,12 @@ export function Navbar() {
                       className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                       href="/"
                     >
-                      <Image src='/aetheris1.svg' alt="aetheris" height={40} width={40}/>
+                      <Image
+                        src="/aetheris1.svg"
+                        alt="aetheris"
+                        height={40}
+                        width={40}
+                      />
                       <div className="mb-2 mt-4 text-lg font-medium">
                         Aetheris
                       </div>
@@ -116,15 +128,23 @@ export function Navbar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      
+
       <div className="flex items-center space-x-4">
-        <ThemeSwitchButton/>
-        <Link href="/login" passHref>
-          <Button variant="outline">Login</Button>
-        </Link>
+        <ThemeSwitchButton />
+        <SignedOut>
+          <Button>
+            <SignInButton />
+          </Button>
+        </SignedOut>
+        <SignedIn>
+          <UserButton/>
+          <Button>
+            <SignOutButton />
+          </Button>
+        </SignedIn>
       </div>
     </div>
-  )
+  );
 }
 
 const ListItem = React.forwardRef<
@@ -149,6 +169,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";
