@@ -28,14 +28,14 @@ import {
 
 export function MobileNavbar() {
   return (
-    <div className="sm:hidden fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-background z-50">
+    <div className="sm:hidden fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-50">
       <Link href="/">
         <Image src="/aetheris1.svg" alt="aetheris" height={30} width={30} />
       </Link>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon">
-            <Menu className="h-6 w-6" />
+          <Button size="icon">
+            <Menu className="h-5 w-5" />
           </Button>
         </SheetTrigger>
         <SheetContent>
@@ -70,7 +70,6 @@ export function MobileNavbar() {
                 <AccordionTrigger>PERFUMES</AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-2">
-                    {/* Add your perfume links here */}
                     <Link href="/perfumes/1" className="block p-2 hover:bg-accent rounded-md">
                       Perfume 1
                     </Link>
