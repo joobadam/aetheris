@@ -23,19 +23,19 @@ export function Banner() {
   if (!bannerData || bannerData.length === 0) return null
 
   return (
-    <div className="relative w-full h-screen ">
+    <div className="relative w-full ">
       <Carousel
         plugins={[
           Autoplay({
             delay: 5000,
           }),
         ]}
-        className="w-full"
+        className="w-full "
       >
-        <CarouselContent>
+        <CarouselContent className=''>
           {bannerData.map((banner, index) => (
             <CarouselItem key={index}>
-              <div className="relative w-full overflow-hidden">
+              <div className="relative w-full overflow-hidden h-[60vh]">
                 {banner.imageUrl && (
                   <img 
                     src={banner.imageUrl}

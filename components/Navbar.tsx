@@ -63,7 +63,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function Navbar() {
   return (
-    <div className="hidden sm:flex p-5 fixed w-full justify-between items-center z-50">
+    <div className="hidden sm:flex p-5 fixed w-full justify-between items-center z-50 bg-primary/20">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -121,7 +121,7 @@ export function Navbar() {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className="bg-transparent text-white">
+              <NavigationMenuLink className="text-white font-bold text-sm">
                 ABOUT US
               </NavigationMenuLink>
             </Link>
