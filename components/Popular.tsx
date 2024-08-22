@@ -41,8 +41,8 @@ export default function Popular() {
                 />
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <span>{item.price.toLocaleString()} Ft</span>
+            <CardFooter className="grid grid-rows-2 sm:grid-rows-1 grid-cols-1 sm:grid-cols-2">
+              <span className='mx-auto sm:mx-0'>{item.price.toLocaleString()} Ft</span>
               <Button className="">
                 Add to cart
               </Button>

@@ -19,6 +19,42 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'image1',
+      title: 'Image1',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'image2',
+      title: 'Image2',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'name1',
+      title: 'Name1',
+      type: 'string',
+    }),
+    defineField({
+      name: 'name2',
+      title: 'Name2',
+      type: 'string',
+    }),
+    defineField({
+      name: 'price1',
+      title: 'Price1',
+      type: 'number',
+    }),
+    defineField({
+      name: 'price2',
+      title: 'Price2',
+      type: 'number',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -26,11 +62,6 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
     }),
   ],
 })

@@ -39,6 +39,20 @@ export async function getPopularData() {
   }`)
 }
 
+export async function getPresentationData() {
+  return client.fetch(`*[_type == "presentation"] {
+    title,
+    "imageUrl": image.asset->url,
+    "image1Url": image1.asset->url,
+    "image2Url": image2.asset->url,
+    name1,
+    name2,
+    price1,
+    price2,
+    "slug": slug.current
+  }`)
+}
+
 export async function getMonthlyData() {
   return client.fetch(`*[_type == "monthly"] {
     title,

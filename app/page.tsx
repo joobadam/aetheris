@@ -1,6 +1,7 @@
 import { Banner } from "@/components/Banner";
 import Mid from "@/components/Mid";
 import Popular from "@/components/Popular";
+import Presentation from "@/components/Presentation";
 import Promo from "@/components/Promo";
 import Image from "next/image";
 
@@ -10,6 +11,7 @@ export default function Home() {
       <Banner/>
       <Promo/>
       <Mid/>
+      <Presentation/>
       <Popular/>
     </main>
   );
