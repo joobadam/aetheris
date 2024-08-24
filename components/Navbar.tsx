@@ -42,7 +42,7 @@ export function Navbar() {
   const { data: brands, isLoading: isBrandsLoading } = useSanityData<NavBrand[]>(getNavBrandsData);
 
   return (
-    <div className="hidden sm:flex p-5 fixed w-full justify-between items-center z-50 bg-primary/20">
+    <div className="hidden sm:flex p-5 fixed w-full justify-between items-center z-40 bg-primary/20">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>

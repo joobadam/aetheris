@@ -38,6 +38,17 @@ export async function getSectionData() {
   }`)
 }
 
+
+export async function getAboutData() {
+  return client.fetch(`*[_type == "about"] {
+    title,
+    "imageUrl": image.asset->url,
+    "slug": slug.current,
+    description,
+    description2
+  }`)
+}
+
 export async function getMidData() {
   return client.fetch(`*[_type == "mid"] {
     title,
@@ -81,4 +92,23 @@ export async function getMonthlyData() {
   }`)
 }
 
-// További függvények a többi séma típushoz...
+export async function getBrandData(slug: string) {
+  return client.fetch(`*[_type == "brand" && slug.current == $slug][0] {
+    name,
+    "imageUrl": image.asset->url,
+    description,
+    "slug": slug.current
+  }`, { slug })
+}
+
+export async function getProductsByBrandSlug(brandSlug: string) {
+  return client.fetch(`*[_type == "product" && brand == $brandSlug] {
+    name,
+    brand,
+    type,
+    "slug": slug.current,
+    price,
+    description,
+    "imageUrl": image.asset->url
+  }`, { brandSlug })
+}

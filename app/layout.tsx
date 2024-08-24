@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import {ClerkProvider,} from "@clerk/nextjs";
 import "./globals.css";
 import { MobileNavbar } from "@/components/MobileNavBar";
+import { Guarantee } from "@/components/Guarantee";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
             <Navbar />
             <MobileNavbar/>
             {children}
+            <Guarantee/>
             <Footer />
           </ThemeProvider>
         </body>
