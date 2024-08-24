@@ -7,8 +7,10 @@ import mid from './mid'
 import presentation from './presentation'
 import popular from './popular'
 import brand from './brand'
+import navBrands from './navBrands'
+import navCategory from './navCategory'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [product, banner, section, monthly, mid, presentation, popular, brand],
+  types: [product, banner, section, monthly, mid, presentation, popular, brand, navBrands, navCategory],
 }

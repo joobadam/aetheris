@@ -1,4 +1,5 @@
 import { Banner } from "@/components/Banner";
+import { Guarantee } from "@/components/Guarantee";
 import Mid from "@/components/Mid";
 import Popular from "@/components/Popular";
 import Presentation from "@/components/Presentation";
@@ -13,6 +14,7 @@ export default function Home() {
       <Mid/>
       <Presentation/>
       <Popular/>
+      <Guarantee/>
     </main>
   );
 }

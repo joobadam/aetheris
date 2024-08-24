@@ -22,52 +22,31 @@ import {
   UserButton,
   SignOutButton,
 } from "@clerk/nextjs";
+import { useSanityData } from '@/app/hooks/useSanityData';
+import { getNavCategoryData, getNavBrandsData } from '@/lib/api';
+import { Skeleton } from "@/components/ui/skeleton";
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
+interface NavCategory {
+  name: string;
+  description: string;
+  slug: string;
+}
+
+interface NavBrand {
+  name: string;
+  slug: string;
+}
 
 export function Navbar() {
+  const { data: categories, isLoading: isCategoriesLoading } = useSanityData<NavCategory[]>(getNavCategoryData);
+  const { data: brands, isLoading: isBrandsLoading } = useSanityData<NavBrand[]>(getNavBrandsData);
+
   return (
     <div className="hidden sm:flex p-5 fixed w-full justify-between items-center z-50 bg-primary/20">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent text-white">BRANDS</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="bg-transparent text-white">PERFUMES</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
@@ -91,36 +70,48 @@ export function Navbar() {
                     </a>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="/docs" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
-                </ListItem>
-                <ListItem href="/docs/installation" title="Installation">
-                  How to install dependencies and structure your app.
-                </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Typography">
-                  Styles for headings, paragraphs, lists...etc
-                </ListItem>
+                {isCategoriesLoading ? (
+                  <div className="flex flex-col space-y-3">
+                    <Skeleton className="h-[20vh] w-[40%] rounded-xl" />
+                    <Skeleton className="h-[20vh] w-[80%]" />
+                    <Skeleton className="h-[30vh] w-[60%]" />
+                  </div>
+                ) : (
+                  categories?.map((category) => (
+                    <ListItem key={category.slug} href={`/category/${category.slug}`} title={category.name}>
+                      {category.description}
+                    </ListItem>
+                  ))
+                )}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent text-white">PERFUMES</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="bg-transparent text-white">BRANDS</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {components.map((component) => (
-                  <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
-                  >
-                    {component.description}
-                  </ListItem>
-                ))}
+                {isBrandsLoading ? (
+                  <div className="flex flex-col space-y-3">
+                    <Skeleton className="h-[20vh] w-[40%] rounded-xl" />
+                    <Skeleton className="h-[20vh] w-[80%]" />
+                    <Skeleton className="h-[30vh] w-[60%]" />
+                  </div>
+                ) : (
+                  brands?.map((brand) => (
+                    <ListItem
+                      key={brand.slug}
+                      title={brand.name}
+                      href={`/brand/${brand.slug}`}
+                      className='pl-10'
+                    >
+                    </ListItem>
+                  ))
+                )}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
+            <Link href="/about" legacyBehavior passHref>
               <NavigationMenuLink className="text-white font-bold text-sm">
                 ABOUT US
               </NavigationMenuLink>

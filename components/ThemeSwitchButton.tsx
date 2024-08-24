@@ -29,14 +29,6 @@ export default function ThemeSwitchButton() {
         checked={theme === "dark"}
         onCheckedChange={toggleTheme}
       />
-  {/*     <Label htmlFor="theme-switch" className="flex items-center space-x-2">
-        {theme === "dark" ? (
-          <Moon className="h-[1.2rem] w-[1.2rem]" />
-        ) : (
-          <Sun className="h-[1.2rem] w-[1.2rem]" />
-        )}
-        <span>{theme === "dark" ? "Dark Mode" : "Light Mode"}</span>
-      </Label> */}
     </div>
   );
 }

@@ -2,24 +2,24 @@
 
 import React from 'react'
 import Image from 'next/image'
-
 import { getMidData } from '../lib/api'
 import { useSanityData } from '@/app/hooks/useSanityData'
+import { SkeletonCard } from './Skeleton'
+import { MidData } from '@/app/models/Mid.model'
 
-interface MidData {
-  title: string
-  imageUrl: string
-  slug: string
-}
+
 
 export default function Mid() {
   const { data: midData, isLoading, error } = useSanityData<MidData[]>(getMidData)
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
+  if (error) return <div className="w-full h-screen flex items-center justify-center text-red-500">Error: {error.message}</div>
   if (!midData || midData.length === 0) return null
 
-  const { title, imageUrl } = midData[0] // Csak az első elemet használjuk
+  if (isLoading) {
+    return <SkeletonCard />
+  }
+
+  const { title, imageUrl } = midData[0]
 
   return (
     <div className="relative w-full h-screen">

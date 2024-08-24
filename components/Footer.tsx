@@ -76,7 +76,7 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-primary">
+                <h3 className="text-sm font-semibold leading-6">
                   Contact Information
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -90,7 +90,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-primary">
+                <h3 className="text-sm font-semibold leading-6">
                   Work Days/Hours
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -106,7 +106,7 @@ const Footer = () => {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-primary">
+                <h3 className="text-sm font-semibold leading-6">
                   Additional Information
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -123,7 +123,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-primary">
+                <h3 className="text-sm font-semibold leading-6">
                   Payment and Shipping
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -142,7 +142,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="mt-10 xl:mt-0">
-            <h3 className="text-sm font-semibold leading-6 text-primary">
+            <h3 className="text-sm font-semibold leading-6">
               Subscribe to our newsletter
             </h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">

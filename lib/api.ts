@@ -1,5 +1,21 @@
 import { client } from './sanity'
 
+
+export async function getNavCategoryData() {
+  return client.fetch(`*[_type == "navCategory"] {
+    name,
+    description,
+    "slug": slug.current
+  }`)
+}
+
+export async function getNavBrandsData() {
+  return client.fetch(`*[_type == "navBrands"] {
+    name,
+    "slug": slug.current
+  }`)
+}
+
 export async function getBannerData() {
   return client.fetch(`*[_type == "banner"] {
     title,
