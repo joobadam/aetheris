@@ -9,14 +9,29 @@ import { Button } from './ui/button'
 import { SkeletonCard } from './Skeleton'
 import { PopularItem } from '@/app/models/Popular.model'
 import Link from 'next/link'
-
-
+import { useToast } from "@/components/ui/use-toast"
+import { useCart } from '@/app/providers/CartContext'
 
 export default function Popular() {
   const { data: popularItems, isLoading, error } = useSanityData<PopularItem[]>(getPopularData)
+  const { addItem } = useCart()
+  const { toast } = useToast()
 
   if (error) return <div className="container mx-auto px-4 py-8 text-red-500">Error: {error.message}</div>
   if (!popularItems || popularItems.length === 0) return null
+
+  const handleAddToCart = (item: PopularItem) => {
+    addItem({
+      id: item.slug,
+      name: item.name,
+      price: item.price,
+      imageUrl: item.imageUrl,
+    })
+    toast({
+      title: "Product added to cart",
+      description: `${item.name} has been added to your cart.`,
+    })
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -28,7 +43,7 @@ export default function Popular() {
           popularItems.map((item, index) => (
             <Card key={item.slug} className={index >= 6 ? 'hidden md:block ' : ' duration-300 shadow-lg hover:shadow-2xl'}>
               <CardHeader>
-                <CardTitle>{item.name}</CardTitle>
+                <CardTitle className='text-lg'>{item.name}</CardTitle>
               </CardHeader>
               <CardContent>
               <Link href={`/product/${item.slug}`}>
@@ -40,11 +55,11 @@ export default function Popular() {
                     objectFit="contain"
                   />
                 </div>
-            </Link>
+              </Link>
               </CardContent>
               <CardFooter className="grid grid-rows-2 sm:grid-rows-1 grid-cols-1 sm:grid-cols-2">
                 <span className='mx-auto sm:mx-0'>{item.price.toLocaleString()} Ft</span>
-                <Button className="">
+                <Button onClick={() => handleAddToCart(item)}>
                   Add to cart
                 </Button>
               </CardFooter>

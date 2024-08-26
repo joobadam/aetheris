@@ -54,7 +54,7 @@ export default function Presentation() {
         {[1, 2].map((index) => (
           <Card key={index} className="duration-300 shadow-lg hover:shadow-2xl">
             <CardHeader>
-              <CardTitle>{item?.[`name${index}` as keyof PresentationItem] || <SkeletonCard/>}</CardTitle>
+              <CardTitle className='text-lg'>{item?.[`name${index}` as keyof PresentationItem] || <SkeletonCard/>}</CardTitle>
             </CardHeader>
             <Link href={`/brand/${item.brand}`}>
             <CardContent>

@@ -3,10 +3,12 @@ import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import {ClerkProvider,} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { MobileNavbar } from "@/components/MobileNavBar";
 import { Guarantee } from "@/components/Guarantee";
+import { CartProvider } from "./providers/CartContext";
+import { Toaster } from "@/components/ui/toaster";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,11 +33,14 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
-            <MobileNavbar/>
-            {children}
-            <Guarantee/>
-            <Footer />
+            <CartProvider>
+              <Navbar />
+              <MobileNavbar/>
+              {children}
+              <Toaster/>
+              <Guarantee/>
+              <Footer />
+            </CartProvider>
           </ThemeProvider>
         </body>
       </html>

@@ -1,9 +1,8 @@
-'use client'
+/* 'use client'
 
 import React, { useState, useEffect } from "react";
 import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Moon, Sun } from "lucide-react";
+
 
 export default function ThemeSwitchButton() {
   const [theme, setTheme] = useState("light");
@@ -20,6 +19,31 @@ export default function ThemeSwitchButton() {
     if (typeof window !== "undefined") {
       document.documentElement.classList.toggle("dark");
     }
+  };
+
+  return (
+    <div className="flex items-center space-x-2">
+      <Switch
+        id="theme-switch"
+        checked={theme === "dark"}
+        onCheckedChange={toggleTheme}
+      />
+    </div>
+  );
+} */
+
+
+'use client'
+
+import React from "react";
+import { Switch } from "@/components/ui/switch";
+import { useTheme } from "next-themes";
+
+export default function ThemeSwitchButton() {
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
