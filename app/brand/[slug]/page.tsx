@@ -67,7 +67,7 @@ export default function BrandPage({ params }: { params: { slug: string } }) {
             </Link>
               </CardContent>
               <CardFooter className="flex justify-between items-center">
-                <span className="text-lg font-semibold">{product.price.toLocaleString()} Ft</span>
+                <span className="text-lg font-semibold"> {product.price != null ? `${product.price.toLocaleString()} Ft` : ''} Ft</span>
                 <Button className="ml-2">
                   Add to cart
                 </Button>
