@@ -38,7 +38,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         <div className="flex flex-col justify-center">
           <h1 className="text-3xl font-bold mb-2">{productData.name}</h1>
           <p className="text-xl mb-2 uppercase">{productData.brand}</p>
-          <p className="text-2xl font-semibold mb-4">{productData.price.toLocaleString()} Ft</p>
+          <p className="text-2xl font-semibold mb-4">{productData.price != null ? `${productData.price.toLocaleString()} Ft` : ''} Ft</p>
           <p className="mb-6 text-sm">{productData.description}</p>
           <Button className="w-full md:w-auto">
             Add to Cart
