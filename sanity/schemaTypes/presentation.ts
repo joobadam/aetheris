@@ -55,6 +55,11 @@ export default defineType({
       type: 'number',
     }),
     defineField({
+      name: 'brand',
+      title: 'Brand',
+      type: 'string',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',

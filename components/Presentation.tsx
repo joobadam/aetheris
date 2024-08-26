@@ -8,15 +8,12 @@ import { Button } from "@/components/ui/button"
 import { useSanityData } from '@/app/hooks/useSanityData'
 import { SkeletonCard } from './Skeleton'
 import { PresentationItem } from '@/app/models/Presentation.model'
+import Link from 'next/link'
 
 
 
 export default function Presentation() {
   const { data: presentationItems, isLoading, error } = useSanityData<PresentationItem[]>(getPresentationData)
-
-  const formatPrice = (price: number | null) => {
-    return price != null ? price.toLocaleString() : 'N/A'
-  }
 
   const renderImage = (url: string | null, alt: string) => (
     <div className="relative w-full h-48">
@@ -59,15 +56,16 @@ export default function Presentation() {
             <CardHeader>
               <CardTitle>{item?.[`name${index}` as keyof PresentationItem] || <SkeletonCard/>}</CardTitle>
             </CardHeader>
+            <Link href={`/brand/${item.brand}`}>
             <CardContent>
               {renderImage(item?.[`image${index}Url` as keyof PresentationItem] as string | null, item?.[`name${index}` as keyof PresentationItem] as string || '')}
             </CardContent>
             <CardFooter className="grid grid-rows-2">
-              <span className='mx-auto '>{formatPrice(item?.[`price${index}` as keyof PresentationItem] as number | null)} Ft</span>
               <Button className="">
-                Add to cart
+                More info
               </Button>
             </CardFooter>
+          </Link>
           </Card>
         ))}
       </div>

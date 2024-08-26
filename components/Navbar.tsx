@@ -25,17 +25,9 @@ import {
 import { useSanityData } from '@/app/hooks/useSanityData';
 import { getNavCategoryData, getNavBrandsData } from '@/lib/api';
 import { Skeleton } from "@/components/ui/skeleton";
+import { NavBrand, NavCategory } from "@/app/models/Nav.model";
 
-interface NavCategory {
-  name: string;
-  description: string;
-  slug: string;
-}
 
-interface NavBrand {
-  name: string;
-  slug: string;
-}
 
 export function Navbar() {
   const { data: categories, isLoading: isCategoriesLoading } = useSanityData<NavCategory[]>(getNavCategoryData);

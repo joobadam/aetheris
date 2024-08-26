@@ -8,4 +8,5 @@ export interface PresentationItem {
     price1: number | null
     price2: number | null
     slug: string
+    brand: string | null
   }

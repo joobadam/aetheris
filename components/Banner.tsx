@@ -48,9 +48,6 @@ export function Banner() {
                     <div className="max-w-4xl">
                       <h2 className="text-xl font-bold mb-4 text-white">{banner.title}</h2>
                       <p className="text-sm text-white mb-6">{banner.description}</p>
-                      <Button variant="outline" className="">
-                        Learn More
-                      </Button>
                     </div>
                   </div>
                 </div>

@@ -10,6 +10,7 @@ import brand from "./brand";
 import navBrands from "./navBrands";
 import navCategory from "./navCategory";
 import about from "./about";
+import category from "./category";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -24,5 +25,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     navBrands,
     navCategory,
     about,
+    category
   ],
 };

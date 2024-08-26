@@ -76,6 +76,7 @@ export async function getPresentationData() {
     name2,
     price1,
     price2,
+    brand,
     "slug": slug.current
   }`)
 }
@@ -111,4 +112,36 @@ export async function getProductsByBrandSlug(brandSlug: string) {
     description,
     "imageUrl": image.asset->url
   }`, { brandSlug })
+}
+
+export async function getCategoryData(slug: string) {
+  return client.fetch(`*[_type == "category" && slug.current == $slug][0] {
+    name,
+    "imageUrl": image.asset->url,
+    description,
+    "slug": slug.current
+  }`, { slug })
+}
+
+export async function getProductsByCategorySlug(categorySlug: string) {
+  return client.fetch(`*[_type == "product" && type == $categorySlug] {
+    name,
+    type,
+    "slug": slug.current,
+    price,
+    description,
+    "imageUrl": image.asset->url
+  }`, { categorySlug })
+}
+
+export async function getProductData(slug: string) {
+  return client.fetch(`*[_type == "product" && slug.current == $slug][0] {
+    name,
+    brand,
+    type,
+    "slug": slug.current,
+    price,
+    description,
+    "imageUrl": image.asset->url
+  }`, { slug })
 }

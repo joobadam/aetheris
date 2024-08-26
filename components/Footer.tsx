@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
-import { Facebook, Instagram, Twitter, Youtube, X } from "lucide-react";
+import { Facebook, Instagram, Youtube, X } from "lucide-react";
 
 const navigation = {
   contactInformation: [

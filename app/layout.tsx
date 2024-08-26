@@ -8,6 +8,7 @@ import "./globals.css";
 import { MobileNavbar } from "@/components/MobileNavBar";
 import { Guarantee } from "@/components/Guarantee";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

@@ -8,6 +8,7 @@ import { useSanityData } from '@/app/hooks/useSanityData'
 import { Button } from './ui/button'
 import { SkeletonCard } from './Skeleton'
 import { PopularItem } from '@/app/models/Popular.model'
+import Link from 'next/link'
 
 
 
@@ -20,7 +21,7 @@ export default function Popular() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold mb-6">Best seller</h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-5x">
         {isLoading ? (
           <SkeletonCard />
         ) : (
@@ -30,6 +31,7 @@ export default function Popular() {
                 <CardTitle>{item.name}</CardTitle>
               </CardHeader>
               <CardContent>
+              <Link href={`/product/${item.slug}`}>
                 <div className="relative w-full h-48">
                   <Image
                     src={item.imageUrl}
@@ -38,6 +40,7 @@ export default function Popular() {
                     objectFit="contain"
                   />
                 </div>
+            </Link>
               </CardContent>
               <CardFooter className="grid grid-rows-2 sm:grid-rows-1 grid-cols-1 sm:grid-cols-2">
                 <span className='mx-auto sm:mx-0'>{item.price.toLocaleString()} Ft</span>

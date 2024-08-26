@@ -3,47 +3,47 @@
 import React, { useMemo } from 'react'
 import Image from 'next/image'
 import { useSanityData } from '@/app/hooks/useSanityData'
-import { getBrandData, getProductsByBrandSlug } from '@/lib/api'
+import { getCategoryData, getProductsByCategorySlug } from '@/lib/api'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from '@/components/ui/button'
 import { SkeletonCard } from '@/components/Skeleton'
+import { CategoryData } from '@/app/models/Category.model'
 import { ProductData } from '@/app/models/Product.model'
-import { BrandData } from '@/app/models/Brand.model'
 import Link from 'next/link'
 
 
 
 
-export default function BrandPage({ params }: { params: { slug: string } }) {
-  const getBrandDataMemo = useMemo(() => () => getBrandData(params.slug), [params.slug])
-  const getProductsDataMemo = useMemo(() => () => getProductsByBrandSlug(params.slug), [params.slug])
+export default function CategoryPage({ params }: { params: { slug: string } }) {
+  const getCategoryDataMemo = useMemo(() => () => getCategoryData(params.slug), [params.slug])
+  const getProductsDataMemo = useMemo(() => () => getProductsByCategorySlug(params.slug), [params.slug])
 
-  const { data: brandData, isLoading: isBrandLoading, error: brandError } = useSanityData<BrandData>(getBrandDataMemo)
+  const { data: categoryData, isLoading: isCategoryLoading, error: categoryError } = useSanityData<CategoryData>(getCategoryDataMemo)
   const { data: productsData, isLoading: isProductsLoading, error: productsError } = useSanityData<ProductData[]>(getProductsDataMemo)
 
-  if (brandError) return <div>Error loading brand: {brandError.message}</div>
+  if (categoryError) return <div>Error loading category: {categoryError.message}</div>
   if (productsError) return <div>Error loading products: {productsError.message}</div>
 
-  if (isBrandLoading || isProductsLoading) {
+  if (isCategoryLoading || isProductsLoading) {
     return <SkeletonCard />
   }
 
-  if (!brandData) return <div>Brand not found</div>
+  if (!categoryData) return <div>Category not found</div>
 
   return (
     <div className="">
-      {/* Brand Banner */}
+      {/* Category Banner */}
       <div className="relative h-[70vh] mb-8">
         <Image
-          src={brandData.imageUrl}
-          alt={brandData.name}
+          src={categoryData.imageUrl}
+          alt={categoryData.name}
           layout="fill"
           objectFit="cover"
         />
       </div>
       <div className='container'>
-      <h1 className="text-4xl font-bold mb-4">{brandData.name}</h1>
-      <p className="mb-8">{brandData.description}</p>
+        <h1 className="text-4xl font-bold mb-4">{categoryData.name}</h1>
+        <p className="mb-8">{categoryData.description}</p>
       </div>
       {/* Products Grid */}
       <h2 className="text-3xl font-bold mb-6">Products</h2>
@@ -54,8 +54,8 @@ export default function BrandPage({ params }: { params: { slug: string } }) {
               <CardHeader>
                 <CardTitle>{product.name}</CardTitle>
               </CardHeader>
-              <CardContent>
               <Link href={`/product/${product.slug}`}>
+              <CardContent>
                 <div className="relative w-full h-48">
                   <Image
                     src={product.imageUrl}
@@ -64,10 +64,14 @@ export default function BrandPage({ params }: { params: { slug: string } }) {
                     objectFit="contain"
                   />
                 </div>
-            </Link>
               </CardContent>
+              </Link>
               <CardFooter className="flex justify-between items-center">
-                <span className="text-lg font-semibold">{product.price.toLocaleString()} Ft</span>
+                <span className="text-lg font-semibold">
+                  {product.price != null 
+                    ? `${product.price.toLocaleString()} Ft` 
+                    : 'Ár nem elérhető'}
+                </span>
                 <Button className="ml-2">
                   Add to cart
                 </Button>
@@ -76,7 +80,7 @@ export default function BrandPage({ params }: { params: { slug: string } }) {
           ))
         ) : (
           <div className="col-span-full text-center text-lg text-gray-600">
-            No products found for this brand.
+            No products found for this category.
           </div>
         )}
       </div>
