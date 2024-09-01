@@ -1,9 +1,9 @@
 export interface ProductData {
-    name: string
-    type: string
-    slug: string
-    price: number | null
-    description: string
-    imageUrl: string
-    brand?: string
-  }
+  name: string
+  brand: string
+  type: string
+  slug: string
+  price: number | null
+  description: string
+  imageUrl: string
+}

@@ -5,14 +5,9 @@ import Image from 'next/image'
 import { useSanityData } from '@/app/hooks/useSanityData'
 import { getAboutData } from '@/lib/api'
 import { SkeletonCard } from "@/components/Skeleton"
+import { AboutData } from '../models/AboutData.model'
 
-interface AboutData {
-  title: string
-  imageUrl: string
-  slug: string
-  description: string
-  description2: string
-}
+
 
 export default function Page() {
   const { data: aboutData, isLoading, error } = useSanityData<AboutData[]>(getAboutData)

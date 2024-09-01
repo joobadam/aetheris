@@ -58,7 +58,6 @@ export default function NichePerfumePromo() {
         </div>
       </section>
 
-      {/* Testimonials */}
       <section
         aria-labelledby="testimonial-heading"
         className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32"

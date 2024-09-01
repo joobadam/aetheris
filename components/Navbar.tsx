@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useState, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -30,18 +30,15 @@ import { ShoppingCart } from 'lucide-react';
 import { CartPreview } from "./CartPreview";
 import { useCart } from "@/app/providers/CartContext";
 
-
 export function Navbar() {
   const { data: categories, isLoading: isCategoriesLoading } = useSanityData<NavCategory[]>(getNavCategoryData);
   const { data: brands, isLoading: isBrandsLoading } = useSanityData<NavBrand[]>(getNavBrandsData);
-  const { items } = useCart();
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const cartRef = useRef<HTMLDivElement>(null);
+  const { items, isCartPreviewOpen, setIsCartPreviewOpen } = useCart();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
-        setIsCartOpen(false);
+      if (event.target instanceof Node && !event.target.closest('.cart-preview')) {
+        setIsCartPreviewOpen(false);
       }
     };
 
@@ -49,7 +46,7 @@ export function Navbar() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [setIsCartPreviewOpen]);
 
   return (
     <div className="hidden sm:flex p-5 fixed w-full justify-between items-center z-40 bg-primary/20">
@@ -131,9 +128,9 @@ export function Navbar() {
       </NavigationMenu>
 
       <div className="flex items-center space-x-4">
-        <div className="relative" ref={cartRef}>
+        <div className="relative cart-preview">
           <button
-            onClick={() => setIsCartOpen(!isCartOpen)}
+            onClick={() => setIsCartPreviewOpen(!isCartPreviewOpen)}
             className="bg-transparent text-white p-2 rounded-full hover:bg-white/10 transition-colors"
           >
             <ShoppingCart className="h-6 w-6" />
@@ -143,11 +140,7 @@ export function Navbar() {
               </span>
             )}
           </button>
-          {isCartOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-secondary shadow-lg rounded-md">
-              <CartPreview  />
-            </div>
-          )}
+          <CartPreview />
         </div>
         <ThemeSwitchButton />
         <SignedOut>

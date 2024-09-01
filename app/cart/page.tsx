@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useCart } from '../providers/CartContext';
+import { CheckoutButton } from '@/components/CheckoutButton';
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, getCartTotal } = useCart();
@@ -54,7 +55,7 @@ export default function CartPage() {
           ))}
           <div className="mt-6 text-right">
             <p className="text-2xl font-bold">Total: {getCartTotal().toLocaleString()} Ft</p>
-            <Button className="mt-4">Proceed to Checkout</Button>
+           <CheckoutButton/>
           </div>
         </>
       )}

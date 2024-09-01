@@ -9,16 +9,8 @@ import { Button } from "@/components/ui/button"
 import { SkeletonCard } from '@/components/Skeleton'
 import { useToast } from "@/components/ui/use-toast"
 import { useCart } from '@/app/providers/CartContext'
+import { ProductData } from '@/app/models/Product.model'
 
-interface ProductData {
-  name: string
-  brand: string
-  type: string
-  slug: string
-  price: number | null
-  description: string
-  imageUrl: string
-}
 
 export default function ProductPage() {
   const { slug } = useParams()

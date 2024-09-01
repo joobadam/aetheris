@@ -59,7 +59,6 @@ const Footer = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle newsletter subscription logic here
     console.log("Subscribed with email:", email);
     setEmail("");
   };

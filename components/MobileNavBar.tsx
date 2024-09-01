@@ -30,6 +30,7 @@ import {
 import { useSanityData } from '@/app/hooks/useSanityData';
 import { getNavCategoryData, getNavBrandsData } from '@/lib/api';
 import { Skeleton } from "@/components/ui/skeleton";
+import { ShoppingCart } from 'lucide-react';
 
 interface NavCategory {
   name: string;
@@ -110,6 +111,12 @@ export function MobileNavbar() {
             <Link href="/about" className="block p-4 hover:bg-accent rounded-md">
               ABOUT US
             </Link>
+            <Link href='/cart'>
+              <Button className='flex gap-2'>
+              <ShoppingCart className="h-4 w-4" />
+                Cart
+              </Button>
+              </Link>
           </div>
           <div className="absolute bottom-4 left-4 right-4">
             <div className="flex items-center justify-between">

@@ -4,7 +4,6 @@ import React from 'react'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import { getBannerData } from '../lib/api'
-import { Button } from "@/components/ui/button"
 import { useSanityData } from '@/app/hooks/useSanityData'
 import { SkeletonCard } from './Skeleton'
 import { BannerData } from '@/app/models/Banner.model'
