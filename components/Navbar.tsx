@@ -37,7 +37,8 @@ export function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (event.target instanceof Node && !event.target.closest('.cart-preview')) {
+      const target = event.target as Element;
+      if (target instanceof Element && !target.closest('.cart-preview')) {
         setIsCartPreviewOpen(false);
       }
     };
